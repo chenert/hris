@@ -2,9 +2,18 @@
 
 class Login extends CI_Controller {
 
-	public function index()
-	{
+	public function index() {
 		$this->load->view('login');
+	}
+	
+	public function authenticate() {
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		
+		if ($this->Users->get_info($username, $password)) {
+			$this->load->view('top');
+		}
+		return false;
 	}
 }
 
